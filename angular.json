@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "AdministracaoContas"
+    }
+  },
+  "defaultProject": "AdministracaoContas",
+  "cli": {
+    "analytics": false
+  }
 }
