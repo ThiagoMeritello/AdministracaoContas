@@ -1,6 +1,6 @@
 import { BaseResourceModel } from "../../../shared/models/base-resource.model";
 
-export class Conta extends BaseResourceModel{
+export class Despesa extends BaseResourceModel{
     dataCompra: Date;
     loja: string;
     produto: string;
@@ -9,7 +9,7 @@ export class Conta extends BaseResourceModel{
     parcela: number;
     dataPagamento: Date;
   
-    static fromJson(jsonData: any): Conta {
-      return Object.assign(new Conta(), jsonData);
+    static fromJson(jsonData: any): Despesa {
+      return Object.assign(new Despesa(), jsonData);
     }
   }

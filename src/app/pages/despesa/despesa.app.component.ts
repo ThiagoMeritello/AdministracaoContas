@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'controle-contas-app-root',
+  selector: 'despesa-app-root',
   template: '<router-outlet></router-outlet>'
 })
-export class ControleContasAppComponent { }
+export class DespesaAppComponent { }
