@@ -24,14 +24,14 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+        <tr *ngFor="let despesa of despesas">
+            <td> {{ despesa.dataCompra | date: "dd/MM/yyyy " }} </td>
+            <td> {{ despesa.loja }} </td>
+            <td> {{ despesa.produto }} </td>
+            <td> {{ despesa.parcela }} </td>
+            <td> {{ despesa.valor }} </td>
+            <td> {{ despesa.formaPagamento }} </td>
+            <td> {{ despesa.dataPagamento | date: "dd/MM/yyyy " }} </td>
         </tr>
     </tbody>
 </table>

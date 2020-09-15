@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
+import { Despesa } from '../models/Despesa';
+import { DespesaServices } from '../services/despesa.services';
 
 @Component({
   selector: 'app-despesa-lista',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DespesaListaComponent implements OnInit {
 
-  constructor() { }
+  public despesas: Despesa[]; 
+
+  constructor(private despesaService: DespesaServices) { 
+  }
 
   ngOnInit(): void {
+    this.despesaService.obterTodos()
+      .subscribe(
+         despesas => this.despesas = despesas,
+         error => console.log(error)        
+      );
   }
 
 }

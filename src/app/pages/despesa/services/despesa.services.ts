@@ -3,9 +3,11 @@ import { BaseResourceService } from 'src/app/shared/services/base-resource.servi
 
 import { Despesa } from '../models/Despesa';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+  })
 export class DespesaServices extends BaseResourceService<Despesa> {
     constructor(protected injector: Injector) {
-        super("api/despesa", injector, Despesa.fromJson);
+        super("despesa", injector, Despesa.fromJson);
     }
 }

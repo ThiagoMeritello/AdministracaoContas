@@ -5,11 +5,13 @@ import { HttpClient } from "@angular/common/http";
 
 import { Observable, throwError } from "rxjs";
 import { map, catchError } from "rxjs/operators";
+import { environment } from 'src/environments/environment';
 
 
 export abstract class BaseResourceService<T extends BaseResourceModel> {
 
     protected http: HttpClient;
+    protected UrlService: string = environment.UrlService;
 
     constructor(
         protected apiPath: string,
@@ -19,14 +21,14 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
         this.http = injector.get(HttpClient);
     }
 
-    getAll(): Observable<T[]> {
-        return this.http.get(this.apiPath).pipe(
+    obterTodos(): Observable<T[]> {
+        return this.http.get(this.UrlService + this.apiPath).pipe(
             map(this.jsonDataToResources.bind(this)),
             catchError(this.handleError)
         )
     }
 
-    getById(id: number): Observable<T> {
+    obterPorId(id: number): Observable<T> {
         const url = `${this.apiPath}/${id}`;
 
         return this.http.get(url).pipe(
@@ -35,14 +37,14 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
         )
     }
 
-    create(resource: T): Observable<T> {
-        return this.http.post(this.apiPath, resource).pipe(
+    adicionar(resource: T): Observable<T> {
+        return this.http.post(this.UrlService + this.apiPath, resource).pipe(
             map(this.jsonDataToResource.bind(this)),
             catchError(this.handleError)
         )
     }
 
-    update(resource: T): Observable<T> {
+    atualizar(resource: T): Observable<T> {
         const url = `${this.apiPath}/${resource.id}`;
 
         return this.http.put(url, resource).pipe(
@@ -51,7 +53,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
         )
     }
 
-    delete(id: number): Observable<any> {
+    deletar(id: number): Observable<any> {
         const url = `${this.apiPath}/${id}`;
 
         return this.http.delete(url).pipe(
