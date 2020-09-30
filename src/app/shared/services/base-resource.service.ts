@@ -1,10 +1,10 @@
-import { BaseResourceModel } from "../models/base-resource.model";
+import { BaseResourceModel } from '../models/base-resource.model';
 
-import { Injector } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Injector } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-import { Observable, throwError } from "rxjs";
-import { map, catchError } from "rxjs/operators";
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 
@@ -25,7 +25,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
         return this.http.get(this.UrlService + this.apiPath).pipe(
             map(this.jsonDataToResources.bind(this)),
             catchError(this.handleError)
-        )
+        );
     }
 
     obterPorId(id: number): Observable<T> {
@@ -34,14 +34,14 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
         return this.http.get(url).pipe(
             map(this.jsonDataToResource.bind(this)),
             catchError(this.handleError)
-        )
+        );
     }
 
     adicionar(resource: T): Observable<T> {
         return this.http.post(this.UrlService + this.apiPath, resource).pipe(
             map(this.jsonDataToResource.bind(this)),
             catchError(this.handleError)
-        )
+        );
     }
 
     atualizar(resource: T): Observable<T> {
@@ -50,7 +50,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
         return this.http.put(url, resource).pipe(
             map(() => resource),
             catchError(this.handleError)
-        )
+        );
     }
 
     deletar(id: number): Observable<any> {
@@ -59,7 +59,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
         return this.http.delete(url).pipe(
             map(() => null),
             catchError(this.handleError)
-        )
+        );
     }
 
     // PROTECTED METHODS
@@ -77,8 +77,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
     }
 
     protected handleError(error: any): Observable<any> {
-        console.log("ERRO NA REQUISIÇÃO => ", error);
+        console.log('ERRO NA REQUISIÇÃO => ', error);
         return throwError(error);
     }
-
 }
